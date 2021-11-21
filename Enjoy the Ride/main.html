@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시작하기</title>
+    <style>
+        .container {
+            width: 100%;
+            height: 20%;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map" style="width: 100%; height: 80vh;"></div>
+    <div class="container">
+        <div id="element"></div>
+    </div>
+
+    <script type="text/javascript"
+        src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=98faba3f182bf785a6c6ef1863e91856"></script>
+    <script>
+        const url = 'http://apis.data.go.kr/6260000/BusanBicycleRoadService/getBicycleRoadInfo?serviceKey=OGU8tpyXNjVp5rYa5sOEdufBg1%2FlRwp2Csw7wbrhfeiKA8Ox9AwDySCPQeCHfkWrCJWCPVNc%2BTvQHbXGHBglKA%3D%3D&numOfRows=250&pageNo=1&resultType=json'
+
+        fetch(url)
+            .then((res) => res.json())
+            .then((resJson) => {
+                for(var i = 0; i < 250; i++){
+                    geo(resJson.getBicycleRoadInfo.item[i].gugunNm + ' ' + resJson.getBicycleRoadInfo.item[i].startSpot);
+                }
+            });
+
+        var x, y;
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    x = position.coords.latitude;
+                    y = position.coords.longitude;
+
+                    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+                        mapOption = {
+                            center: new kakao.maps.LatLng(x, y), // 지도의 중심좌표
+                            level: 4 // 지도의 확대 레벨
+                        };
+                    var map = new kakao.maps.Map(mapContainer, mapOption); // 지도 표시
+
+                    var marker = new kakao.maps.Marker({
+                        position: new kakao.maps.LatLng(x, y), // 마커의 좌표
+                        map: map // 마커를 표시할 지도 객체
+                    });
+
+                }, function (error) {
+                    console.error(error);
+                }, {
+                    enableHighAccuracy: true,
+                    maximumAge: 0,
+                    timeout: Infinity
+                });
+            } else {
+                alert('GPS를 지원하지 않습니다');
+            }
+        }
+        getLocation();
+    </script>
+</body>
+
+</html>
