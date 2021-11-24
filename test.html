@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8">
@@ -7,8 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>자전거 도로 지도</title>
     <style>
+        #nav {
+            display: inline;
+            width: 400px;
+            height: 100vh;
+        }
         #map {
-            display: flex;
+            display: inline-flex;
             width: 80vw;
             height: 100vh;
         }
@@ -16,63 +21,69 @@
 </head>
 
 <body>
+    <div id="nav">hifsddddddddddddddddde</div>
     <div id="map"></div>
 
-    <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=0ba755f1aa349b131805ac44c61f64e3&libraries=services"></script>
+    <script src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=0ba755f1aa349b131805ac44c61f64e3&libraries=services"></script>
 
     <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    x = position.coords.latitude;
+                    y = position.coords.longitude;
+                    var moveLatLon = new kakao.maps.LatLng(x, y);
+                    map.panTo(moveLatLon); 
+                }, function (error) {
+                    console.error(error);
+                }, {
+                    enableHighAccuracy: true,
+                    maximumAge: 0,
+                    timeout: Infinity
+                });
+            } else {
+                alert('GPS를 지원하지 않습니다');
+            }
+        }
+        getLocation(); // 현재 위치 받아서 x, y에 위도 경도 저장
+
+
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
             mapOption = {
-                center: new kakao.maps.LatLng(35.13792, 129.05562), // 지도의 중심좌표
-                level: 10, // 지도의 확대 레벨
+                center: new kakao.maps.LatLng(35, 35), // 지도의 중심좌표
+                level: 1, // 지도의 확대 레벨
                 mapTypeId: kakao.maps.MapTypeId.ROADMAP // 지도종류
             };
+        var mapTypes = {bicycle : kakao.maps.MapTypeId.BICYCLE};
 
-        // 지도를 생성한다 
+        var map = new kakao.maps.Map(mapContainer, mapOption); // 지도 생성
+        map.addOverlayMapTypeId(mapTypes.bicycle); // 지도에 자전거 도로 추가
 
-        
-        var map = new kakao.maps.Map(mapContainer, mapOption);
         var geocoder = new kakao.maps.services.Geocoder();
         var startname;
-
-        const url = 'http://apis.data.go.kr/6260000/BusanBicycleRoadService/getBicycleRoadInfo?serviceKey=OGU8tpyXNjVp5rYa5sOEdufBg1%2FlRwp2Csw7wbrhfeiKA8Ox9AwDySCPQeCHfkWrCJWCPVNc%2BTvQHbXGHBglKA%3D%3D&numOfRows=250&pageNo=1&resultType=json'
-        
         function geo(startname) {
-            geocoder.addressSearch(startname, function (result, status) {
-
-                // 정상적으로 검색이 완료됐으면 
-                if (status === kakao.maps.services.Status.OK) {
-
-                    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-                    // 결과값으로 받은 위치를 마커로 표시합니다
-                    var marker = new kakao.maps.Marker({
-                        map: map,
-                        position: coords
-                    });
-
-                    // 인포윈도우로 장소에 대한 설명을 표시합니다
-                    // var infowindow = new kakao.maps.InfoWindow({
-                    //     content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
-                    // });
-                    // infowindow.open(map, marker);
-
-                    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+            geocoder.addressSearch(startname, 
+            function (result, status) {
+                if (status === kakao.maps.services.Status.OK) { // 정상적으로 검색이 완료됐으면 
+                    var coords = new kakao.maps.LatLng(result[0].y, result[0].x); // 결과값으로 받은 위치를 마커로 표시합니다
+                    var marker = new kakao.maps.Marker({map: map, position: coords});
                 }
             });
         }
 
+        const url = 'https://enjoytheride.herokuapp.com/http://apis.data.go.kr/6260000/BusanBicycleRoadService/getBicycleRoadInfo?serviceKey=OGU8tpyXNjVp5rYa5sOEdufBg1%2FlRwp2Csw7wbrhfeiKA8Ox9AwDySCPQeCHfkWrCJWCPVNc%2BTvQHbXGHBglKA%3D%3D&numOfRows=250&pageNo=1&resultType=json'
         fetch(url)
             .then((res) => res.json())
             .then((resJson) => {
-                var markers = [];
-                var item_name = resJson.getBicycleRoadInfo.item[1].startSpot;
                 for(var i = 0; i < 250; i++){
                     geo(resJson.getBicycleRoadInfo.item[i].gugunNm + ' ' + resJson.getBicycleRoadInfo.item[i].startSpot);
                 }
-                
             });
     </script>
 </body>
 
 </html>
+
+function zoom(){
+    map.setLevel(1, {animate: {duration: 1000}});
+}
