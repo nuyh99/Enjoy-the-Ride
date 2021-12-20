@@ -1,0 +1,126 @@
+body {
+    margin: 0;
+  }
+  
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  
+  header {
+    display: flex;
+  }
+  
+  .navbar {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar_logo {
+    font-size: 40px;
+    height: 20vh;
+    width: 100vw;
+    background-color: skyblue;
+    text-align: center;
+  }
+  
+  .navbar_logo a i {
+    padding-top: 40px;
+    font-weight: bold;
+    color: white;
+    font-size: 60px;
+  }
+  
+  .navbar_logo a i span1 {
+    font-family: "EB Garamond", serif;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .navbar_logo a i span2 {
+    font-family: "EB Garamond", serif;
+    font-size: 40px;
+    font-weight: bold;
+  }
+  
+  .navbar_menu {
+    display: flex;
+    list-style: none;
+    padding-left: 30px;
+  }
+
+
+  .content .startimg {
+    width: 100vw;
+    height: 80vh;
+  }
+  
+  #startcontent {
+    position: absolute;
+    bottom: 10vh;
+    left: 27vw;
+    font-family: "Gowun Batang", serif;
+    font-weight: bold;
+    font-size: 70px;
+    color: rgba(0, 0, 0, 0.726);
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+  }
+  
+  #content2 {
+    font-size: 30px;
+  }
+  
+  #content2 {
+    -webkit-animation: content2 1.0s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+    animation: content2 1.0s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  }
+  
+  @-webkit-keyframes content2 {
+    0% {
+      -webkit-filter: blur(12px);
+      filter: blur(12px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-filter: blur(0px);
+      filter: blur(0px);
+      opacity: 1;
+    }
+  }
+  @keyframes content2 {
+    0% {
+      -webkit-filter: blur(12px);
+      filter: blur(12px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-filter: blur(0px);
+      filter: blur(0px);
+      opacity: 1;
+    }
+  }
+  
+  #startBtn {
+    width: 160px;
+    height: 100px;
+    border-radius: 40%;
+    opacity: 0.9;
+    font-family: "Gowun Batang", serif;
+    font-size: 25px;
+    font-weight: bold;
+    background: #272fa8; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+      to bottom,
+      #78e9ff,
+      #b2fefa
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+      to bottom,
+      #68d8ee,
+      #b2fefa
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  
+  #startBtn:hover {
+    background: skyblue;
+  }

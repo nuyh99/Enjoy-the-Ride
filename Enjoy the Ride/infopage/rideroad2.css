@@ -1,0 +1,290 @@
+body {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+header {
+  display: flex;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+}
+
+.navbar_logo {
+  font-size: 40px;
+  height: 150px;
+  width: 400px;
+  background-color: skyblue;
+  text-align: center;
+}
+
+.navbar_logo a i {
+  padding-top: 40px;
+  font-weight: bold;
+  color: white;
+  font-size: 60px;
+}
+
+.navbar_logo a i span1 {
+  font-family: "EB Garamond", serif;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.navbar_logo a i span2 {
+  font-family: "EB Garamond", serif;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.navbar_menu {
+  display: flex;
+  list-style: none;
+  padding-left: 30px;
+}
+
+#topMenu {
+  padding-right: 0px;
+  padding-top: 50px;
+  height: 30px;
+  width: 900px; /* [변경] 하위 메뉴와 동일하게 맞춤 */
+  position: relative;
+}
+#topMenu ul {
+  /* 메인 메뉴 안의 ul을 설정함: 상위메뉴의 ul+하위 메뉴의 ul */
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+#topMenu ul li {
+  /* 메인 메뉴 안에 ul 태그 안에 있는 li 태그의 스타일 적용(상위/하위메뉴 모두) */
+  line-height: 30px;
+  vertical-align: middle;
+  text-align: center;
+  -position: relative;
+}
+
+#topMenu ul {
+  display: flex;
+  justify-content: space-between;
+}
+
+#topMenu ul li .submenu {
+  display: inline-block;
+  text-align: center;
+}
+
+.topMenuLi a {
+  width: 350px;
+  height: 70px;
+  padding-top: 30px;
+}
+
+.menuLink {
+  /* 상위 메뉴와 하위 메뉴의 a 태그에 공통으로 설정할 스타일 */
+  text-decoration: none;
+  display: block;
+  height: 100px;
+  width: 155px;
+  font-size: 30px;
+  font-family: "Gowun Batang", serif;
+}
+
+#topMenu .topMenuLi .menuLink::after {
+  display: block;
+  padding-top: 20px;
+  content: "";
+  border-bottom: solid 3px skyblue;
+  transform: scaleX(0);
+  transition: transform 250ms ease-in-out;
+}
+
+#topMenu .topMenuLi:hover .menuLink::after {
+  transform: scaleX(0.5);
+}
+
+.submenu {
+  /* 하위 메뉴 스타일 설정 */
+  position: absolute;
+  background-color: rgba(248, 247, 247, 0.829);
+  height: 0px;
+  overflow: hidden;
+  transition: height 0.2s;
+  -webkit-transition: height 0.2s;
+  -moz-transition: height 0.2s;
+  -o-transition: height 0.2s;
+  width: 100vw;
+  left: -400px;
+}
+
+.submenu li {
+  display: inline-block;
+}
+
+.submenuLink {
+  /* 하위 메뉴의 a 태그 스타일 설정 */ /* [변경] 배경색 변경 */
+  text-decoration: none;
+  display: inline-block;
+  font-family: "Gowun Batang", serif;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.topMenuLi:hover .submenu {
+  height: 80px;
+}
+
+#topMenu .topMenuLi .submenuLink::after {
+  display: block;
+  padding-top: 2px;
+  content: "";
+  border-bottom: solid 3px skyblue;
+  transform: scaleX(0);
+  transition: transform 250ms ease-in-out;
+}
+
+#topMenu .topMenuLi .submenu .submenuLink:hover::after {
+  transform: scaleX(0.3);
+}
+
+#mySidenav .sidenav {
+  height: 100%;
+  width: 0;
+  position: absolute;
+  z-index: 1;
+  top: 150px;
+  left: 0;
+  background-color: black;
+}
+
+#mySidenav .sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: rgb(250, 3, 3);
+  display: block;
+  background-color: black;
+}
+
+#Menubar {
+  position: relative;
+  bottom: 0px;
+}
+
+#Menubar ul {
+  list-style-type: none;
+  width: 300px;
+  padding: 0;
+
+  height: 80vh;
+  overflow: auto;
+}
+
+#Menubar ul li a {
+  font-size: 20px;
+  font-family: "Gowun Batang", serif;
+  text-decoration: none;
+  display: block;
+  color: #000;
+  background-color: rgba(243, 243, 243, 0.582);
+  padding: 50px 30px 50px 30px;
+  margin-left: 20px;
+  font-weight: bold;
+  border-bottom: black solid 1px;
+}
+
+#Menubar .hover:hover {
+  background-color: rgba(135, 207, 235, 0.473);
+}
+
+#Menubar .Check {
+  background-color: rgba(135, 207, 235, 0.473);
+}
+
+#Menubar .MainMenu {
+  background: skyblue;
+
+  background: linear-gradient(to right, #78ceff, #9791e9);
+  height: 60px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+section {
+  display: flex;
+}
+
+#Shortcut {
+  position: sticky;
+  text-align: right;
+  bottom: 5%;
+  left: 5%;
+}
+
+#Shortcut i {
+  padding-right: 50px;
+  font-size: 100px;
+  color: skyblue;
+  padding-bottom: 0px;
+}
+
+#Shortcut span {
+  color: skyblue;
+  padding-top: 0px;
+  padding-right: 50px;
+  font-family: "Gowun Batang", serif;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#abc img {
+  width: 100vw;
+  height: 250px;
+  margin-bottom: 0;
+}
+
+#Rideroad {
+  margin-left: 5%;
+}
+
+#Rideroad #box{
+  display: flex;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  border-bottom: 2px solid rgba(135, 207, 235, 0.473);
+  padding-bottom: 20px;
+  font-family: "Gowun Batang", serif;
+}
+
+#Rideroad span{
+  display: inline-block;
+  text-align: left;
+  font-size: 30px;
+  border-bottom: 0px;
+  padding-left: 40px;
+  padding-top: 20px;
+}
+
+#Rideroad #headline{
+  font-weight: bold;
+}
+
+
+#Rideroad ul{
+  list-style: none;
+}
+
+#box img{
+  border: 1px solid black;
+  width: 400px;
+  height: 200px;
+}
+
+
+

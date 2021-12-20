@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- fontaowesome 이미지를 활용하기 위한 script 입니다. -->
+    <script src="https://kit.fontawesome.com/1f943b0307.js" crossorigin="anonymous"></script>
+    <title>Enjoy The Ride</title>
+    <link rel="stylesheet" href="mobile.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="mobile.js" defer></script>
+</head>
+
+<body>
+    <main>
+            <div id="map"></div>
+            <div class="navbar_buttons">
+                <ul>
+                    <li>
+                        <button id="bicycle_road" onclick="setOverlayMapTypeId()">
+                            <span class="icon_road"><i class="fas fa-road"></i></span>
+                            <br>도로
+                        </button>
+                    </li>
+                    <li>
+                        <button id="bicycle_shop" onclick="clickButton()">
+                            <span class="icon_shop"><i class="fas fa-store"></i></span>
+                            <br>수리
+                        </button>
+                    </li>
+                    <li>
+                        <button id="bicycle_storage" onclick="dpstry()">
+                            <span class="icon_stor"><i class="fas fa-database"></i></span>
+                            <br>보관
+                        </button>
+                    </li>
+                    <li>
+                        <button id="reset" onclick="resetBtn()">
+                            <span class="icon_reset"><i class="fas fa-undo"></i></span>
+                            <br>리셋
+                        </button>
+                    </li>
+                    <li>
+                        <a href="mobile_start.html">
+                            <button id="footer_btn">
+                                <span class="icon_home"><i class="fas fa-home"></i></span>
+                                <br>홈
+                            </button>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+    </main>
+    <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0ba755f1aa349b131805ac44c61f64e3&libraries=services,clusterer"></script>
+</body>
+
+</html>

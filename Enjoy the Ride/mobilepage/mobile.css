@@ -1,0 +1,60 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+body main {
+  display: flex;
+  flex-direction: column;
+}
+
+#map {
+    height: 85vh;
+    width: 100vw;
+  }
+
+.navbar_buttons {
+    height: 15vh;
+    width: 100vw;
+    background-color: skyblue;
+    opacity: 0.5;
+}
+
+.navbar_buttons ul {
+  padding-left: 10px;
+  padding-right: 10px;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar_buttons #bicycle_road,
+#bicycle_shop,
+#bicycle_storage,
+#footer_btn,
+#reset {
+  width: 60px;
+  height: 60px;
+  background-color: white;
+  box-shadow: 0 1px 4px 0 rgb(0, 0, 0, 0.5);
+  border-color: rgba(0, 0, 0, 0.137);
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+.icon_road,
+.icon_shop,
+.icon_stor,
+.icon_reset,
+.icon_home {
+  font-size: 25px;
+  color: rgb(37, 144, 255);
+  opacity: 0.8;
+}
+
